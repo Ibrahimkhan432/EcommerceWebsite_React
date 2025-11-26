@@ -1,5 +1,4 @@
 import React from 'react'
-
 const CategoryLink = ({category,isSelected,onClick}) => {
     // console.log("category in link", category);
     console.log("selected cat",isSelected)
