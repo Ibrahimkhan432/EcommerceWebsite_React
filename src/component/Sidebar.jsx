@@ -13,7 +13,7 @@ const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <aside className={`bg-white border-r border-gray-200 h-screen transition-all ${collapsed ? 'w-20' : 'w-64'}`}>
+    <aside className={`bg-white border-r border-gray-200 h-screen transition-all sticky top-10 z-0 ${collapsed ? 'w-20' : 'w-64'}`}>
       <div className="flex h-full flex-col">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
           <div className="flex items-center gap-3">
