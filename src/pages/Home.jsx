@@ -28,8 +28,8 @@ const Home = () => {
 
   return (
     <div>
-      <div className="border-2 border-indigo-500 w-full flex flex-wrap">
-        home
+      <div className="border-2 w-full flex flex-wrap justify-center items-center p-4 mb-4 text-3xl font-bold">
+        Home
       </div>
       {loading ? (
         <h1>Loading...</h1>
@@ -43,11 +43,13 @@ const Home = () => {
               onClick={() => setSelectedCategory(category.slug)}
             />
           ))}
+          <div className="heading w-full text-center my-4 text-3xl font-bold">
           <h1>Our Products</h1>
-          <div className="flex flex-wrap mx-auto">
+          </div>
+          <div className="flex flex-wrap mx-auto gap-4 px-9">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} 
-              id={product.id}
+              id={product.id} 
               />
             ))}
           </div>

@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
-      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all">
+      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all ">
         <div className="flex flex-wrap items-center">
-        <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcset="" />
+        <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcSet="" />
         <Link to="/" className="text-2xl font-bold text-indigo-600">
           Ecommerce
         </Link>
@@ -34,7 +36,7 @@ const Header = () => {
               <path
                 d="M10.836 10.615 15 14.695"
                 stroke="#7A7B7D"
-                stroke-width="1.2"
+                strokeWidth="1.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
@@ -42,7 +44,7 @@ const Header = () => {
                 clip-rule="evenodd"
                 d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
                 stroke="#7A7B7D"
-                stroke-width="1.2"
+                strokeWidth="1.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
@@ -104,15 +106,15 @@ const Header = () => {
         <div
           className={`${
             open ? "flex" : "hidden"
-          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
+          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col flex-start gap-2 px-5 text-sm overflow-hidden`}
         >
-          <a href="#" className="block">
+          <a href="#" className="block text-center">
             Home
           </a>
-          <a href="#" className="block">
+          <a href="#" className="block text-center">
             About
           </a>
-          <a href="#" className="block">
+          <a href="#" className="block text-center">
             Contact
           </a>
           <button className="cursor-pointer px-6 py-2 mt-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm">
