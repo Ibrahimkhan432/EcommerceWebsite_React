@@ -5,10 +5,10 @@ import { useState } from "react";
 const Header = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div>
-      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all ">
+    <div className="w-full fixed top-0 left-0 z-50">
+      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all">
         <div className="flex flex-wrap items-center">
-        <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcSet="" />
+        <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcset="" />
         <Link to="/" className="text-2xl font-bold text-indigo-600">
           Ecommerce
         </Link>
@@ -36,7 +36,7 @@ const Header = () => {
               <path
                 d="M10.836 10.615 15 14.695"
                 stroke="#7A7B7D"
-                strokeWidth="1.2"
+                stroke-width="1.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
@@ -44,7 +44,7 @@ const Header = () => {
                 clip-rule="evenodd"
                 d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
                 stroke="#7A7B7D"
-                strokeWidth="1.2"
+                stroke-width="1.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
