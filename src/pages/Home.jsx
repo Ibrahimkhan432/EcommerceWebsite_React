@@ -23,7 +23,6 @@ const Home = () => {
     Promise.all([fetchCategories, fetchProducts])
       .then(([catRes, prodRes]) => {
         setCategories(Array.isArray(catRes.data) ? catRes.data : []);
-        // products endpoint returns { products: [...] }
         const prods = prodRes.data.products || prodRes.data || [];
         setProducts(prods);
       })
@@ -35,34 +34,9 @@ const Home = () => {
   }, [selectedCategory]);
 
   return (
-    <div>
-      <div className="border-2 w-full flex flex-wrap justify-center items-center p-4 mb-4 text-3xl font-bold">
-        Home
-      </div>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="flex flex-wrap mx-auto mb-4">
-          {category.map((category) => (
-            <CategoryLink
-              isSelected={category.slug === selectedCategory}
-              key={category.slug}
-              category={category}
-              onClick={() => setSelectedCategory(category.slug)}
-            />
-          ))}
-          <div className="heading w-full text-center my-4 text-3xl font-bold">
-          <h1>Our Products</h1>
-          </div>
-          <div className="flex flex-wrap mx-auto gap-4 px-9">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} 
-              id={product.id} 
-              />
-            ))}
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Hero */}
-      <section className="mt-8 bg-linear-to-r from-indigo-600 to-indigo-400 text-white rounded-lg overflow-hidden shadow-lg">
+      <section className="mt-8 bg-gradient-to-r from-indigo-600 to-indigo-400 text-white rounded-lg overflow-hidden shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-extrabold">Discover products you'll love</h1>
@@ -72,7 +46,6 @@ const Home = () => {
               <a href="/signup" className="inline-block border border-white text-white px-4 py-2 rounded-md">Create account</a>
             </div>
           </div>
-
           <div className="hidden md:block">
             <img src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="hero" className="w-md ml-16 rounded-lg object-cover h-56" />
           </div>
@@ -85,9 +58,9 @@ const Home = () => {
         <div className="mt-4 flex gap-3 overflow-x-auto py-2">
           {categories.length === 0 && !loading && <div className="text-sm text-gray-500">No categories found</div>}
           {categories.map((cat) => {
-            const isObj = cat && typeof cat === 'object'
-            const key = isObj ? (cat.slug ?? cat.name ?? JSON.stringify(cat)) : String(cat)
-            const label = isObj ? (cat.name ?? cat.slug ?? String(cat)) : String(cat)
+            const isObj = cat && typeof cat === 'object';
+            const key = isObj ? (cat.slug ?? cat.name ?? JSON.stringify(cat)) : String(cat);
+            const label = isObj ? (cat.name ?? cat.slug ?? String(cat)) : String(cat);
             return (
               <button
                 key={key}
@@ -96,7 +69,7 @@ const Home = () => {
               >
                 {label}
               </button>
-            )
+            );
           })}
           {selectedCategory && (
             <button onClick={() => setSelectedCategory('')} className="whitespace-nowrap px-4 py-2 rounded-full border bg-white text-gray-700 border-gray-200 shadow-sm">Clear</button>
@@ -113,7 +86,7 @@ const Home = () => {
 
         {error && <div className="mt-4 text-sm text-red-600">{error}</div>}
 
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} className="w-full h-64 bg-gray-100 animate-pulse rounded-md" />
