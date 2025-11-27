@@ -35,6 +35,31 @@ const Home = () => {
   }, [selectedCategory]);
 
   return (
+    <div>
+      <div className="border-2 w-full flex flex-wrap justify-center items-center p-4 mb-4 text-3xl font-bold">
+        Home
+      </div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div className="flex flex-wrap mx-auto mb-4">
+          {category.map((category) => (
+            <CategoryLink
+              isSelected={category.slug === selectedCategory}
+              key={category.slug}
+              category={category}
+              onClick={() => setSelectedCategory(category.slug)}
+            />
+          ))}
+          <div className="heading w-full text-center my-4 text-3xl font-bold">
+          <h1>Our Products</h1>
+          </div>
+          <div className="flex flex-wrap mx-auto gap-4 px-9">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} 
+              id={product.id} 
+              />
+            ))}
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Hero */}
       <section className="mt-8 bg-linear-to-r from-indigo-600 to-indigo-400 text-white rounded-lg overflow-hidden shadow-lg">

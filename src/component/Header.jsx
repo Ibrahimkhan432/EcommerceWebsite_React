@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-
   return (
-    <div className="mb-20" >
-      <nav className="flex  fixed top-0 z-10 items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white  transition-all w-full ">
+    <div className="w-full fixed top-0 left-0 z-50">
+      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all">
         <div className="flex flex-wrap items-center">
         <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcSet="" />
         <Link to="/" className="text-2xl font-bold text-indigo-600">
@@ -118,15 +118,15 @@ const Header = () => {
         <div
           className={`${
             open ? "flex" : "hidden"
-          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
+          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col flex-start gap-2 px-5 text-sm overflow-hidden`}
         >
-          <a href="#" className="block">
+          <a href="#" className="block text-center">
             Home
           </a>
-          <a href="#" className="block">
+          <a href="#" className="block text-center">
             About
           </a>
-          <a href="#" className="block">
+          <a href="#" className="block text-center">
             Contact
           </a>
           <div className="flex flex-col w-full gap-2">
