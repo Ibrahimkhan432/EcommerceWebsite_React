@@ -3,7 +3,7 @@ import RouterPaage from "./route/RouterPaage";
 
 const App = () => {
   return (
-    <div>
+    <div className="px-3 mx-10 overflow-hidden">
       <RouterPaage />
     </div>
   );

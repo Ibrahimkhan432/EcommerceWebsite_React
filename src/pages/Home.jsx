@@ -88,7 +88,7 @@ const Home = () => {
 
         {error && <div className="mt-4 text-sm text-red-600">{error}</div>}
 
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} className="w-full h-64 bg-gray-100 animate-pulse rounded-md" />

@@ -12,8 +12,9 @@ const ProductCard = ({ product, id }) => {
   }, [id]);
   console.log("product", product);
   return (
+   
     <Link to={`/product/${id}`}>
-      <div className="w-[300px] m-2 max-w-sm bg-neutral-primary-soft p-2 border border-default rounded-base shadow-xs">
+      <div className="w-[300px] m-2  bg-neutral-primary-soft p-2 border border-default rounded-base shadow-xs rounded-2xl transition-transform duration-300 hover:-translate-y-1 hover:scale-105">
         <a href="#">
           <img
             className="rounded-base mb-6"
@@ -120,7 +121,9 @@ const ProductCard = ({ product, id }) => {
         </div>
       </div>
     </Link>
+    
   );
+
 };
 
 export default ProductCard;

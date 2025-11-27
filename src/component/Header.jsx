@@ -5,8 +5,8 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
-      <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all">
+    <div className="mb-20" >
+      <nav className="flex  fixed top-0 z-10 items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white  transition-all w-full ">
         <div className="flex flex-wrap items-center">
         <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcSet="" />
         <Link to="/" className="text-2xl font-bold text-indigo-600">
@@ -76,9 +76,15 @@ const Header = () => {
               Signup
             </Link>
 
-            <button className="cursor-pointer px-6 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full">
+ <Link to="/login" className="cursor-pointer px-6 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full">
               Login
-            </button>
+            </Link>
+
+
+
+
+
+           
           </div>
         </div>
 

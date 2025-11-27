@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import ProductDetail from "../pages/ProductDetail";
 import Signup from "../pages/Signup";
 import Contact from "../pages/Contact";
+import Login from "../pages/Login";
 
 const RouterPaage = () => {
   return (
@@ -17,6 +18,7 @@ const RouterPaage = () => {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login/>}/>
         </Route>
       </Routes>
     </div>
