@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
+import Sidebar from "../component/Sidebar";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -13,9 +14,14 @@ const Home = () => {
     setLoading(true);
     setError("");
 
-    const fetchCategories = axios.get("https://dummyjson.com/products/categories");
+    const fetchCategories = axios.get(
+      "https://dummyjson.com/products/categories"
+    );
+
     const productsUrl = selectedCategory
-      ? `https://dummyjson.com/products/category/${encodeURIComponent(selectedCategory)}`
+      ? `https://dummyjson.com/products/category/${encodeURIComponent(
+          selectedCategory
+        )}`
       : "https://dummyjson.com/products?limit=12";
 
     const fetchProducts = axios.get(productsUrl);
@@ -23,7 +29,6 @@ const Home = () => {
     Promise.all([fetchCategories, fetchProducts])
       .then(([catRes, prodRes]) => {
         setCategories(Array.isArray(catRes.data) ? catRes.data : []);
-        // products endpoint returns { products: [...] }
         const prods = prodRes.data.products || prodRes.data || [];
         setProducts(prods);
       })
@@ -35,46 +40,47 @@ const Home = () => {
   }, [selectedCategory]);
 
   return (
-    <div>
-      <div className="border-2 w-full flex flex-wrap justify-center items-center p-4 mb-4 text-3xl font-bold">
+    
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Header */}
+      <div className="border-2 w-full flex justify-center items-center p-4 mb-4 text-3xl font-bold">
         Home
       </div>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="flex flex-wrap mx-auto mb-4">
-          {category.map((category) => (
-            <CategoryLink
-              isSelected={category.slug === selectedCategory}
-              key={category.slug}
-              category={category}
-              onClick={() => setSelectedCategory(category.slug)}
-            />
-          ))}
-          <div className="heading w-full text-center my-4 text-3xl font-bold">
-          <h1>Our Products</h1>
-          </div>
-          <div className="flex flex-wrap mx-auto gap-4 px-9">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} 
-              id={product.id} 
-              />
-            ))}
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Hero */}
-      <section className="mt-8 bg-linear-to-r from-indigo-600 to-indigo-400 text-white rounded-lg overflow-hidden shadow-lg">
+
+      {/* Hero Section */}
+      <section className="mt-8 bg-gradient-to-r from-indigo-600 to-indigo-400 text-white rounded-lg overflow-hidden shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-8">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold">Discover products you'll love</h1>
-            <p className="mt-3 text-indigo-100 max-w-xl">Hand-picked collections, great offers, and fast delivery. Shop top categories and featured products.</p>
+            <h1 className="text-3xl sm:text-4xl font-extrabold">
+              Discover products you'll love
+            </h1>
+            <p className="mt-3 text-indigo-100 max-w-xl">
+              Hand-picked collections, great offers, and fast delivery. Shop top
+              categories and featured products.
+            </p>
             <div className="mt-6 flex gap-3">
-              <a href="#products" className="inline-block bg-white text-indigo-600 font-semibold px-4 py-2 rounded-md">Shop now</a>
-              <a href="/signup" className="inline-block border border-white text-white px-4 py-2 rounded-md">Create account</a>
+              <a
+                href="#products"
+                className="inline-block bg-white text-indigo-600 font-semibold px-4 py-2 rounded-md"
+              >
+                Shop now
+              </a>
+              <a
+                href="/signup"
+                className="inline-block border border-white text-white px-4 py-2 rounded-md"
+              >
+                Create account
+              </a>
             </div>
           </div>
 
           <div className="hidden md:block">
-            <img src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="hero" className="w-md ml-16 rounded-lg object-cover h-56" />
+            <img
+              src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg"
+              alt="hero"
+              className="w-md ml-16 rounded-lg object-cover h-56"
+            />
           </div>
         </div>
       </section>
@@ -83,23 +89,33 @@ const Home = () => {
       <section className="mt-8">
         <h2 className="text-lg font-semibold text-gray-800">Categories</h2>
         <div className="mt-4 flex gap-3 overflow-x-auto py-2">
-          {categories.length === 0 && !loading && <div className="text-sm text-gray-500">No categories found</div>}
+          {categories.length === 0 && !loading && (
+            <div className="text-sm text-gray-500">No categories found</div>
+          )}
           {categories.map((cat) => {
-            const isObj = cat && typeof cat === 'object'
-            const key = isObj ? (cat.slug ?? cat.name ?? JSON.stringify(cat)) : String(cat)
-            const label = isObj ? (cat.name ?? cat.slug ?? String(cat)) : String(cat)
+            const key = String(cat);
+            const label = String(cat);
             return (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`whitespace-nowrap px-4 py-2 rounded-full border ${selectedCategory === key ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-200'} shadow-sm`}
+                className={`whitespace-nowrap px-4 py-2 rounded-full border ${
+                  selectedCategory === key
+                    ? "bg-indigo-600 text-white border-indigo-600"
+                    : "bg-white text-gray-700 border-gray-200"
+                } shadow-sm`}
               >
                 {label}
               </button>
-            )
+            );
           })}
           {selectedCategory && (
-            <button onClick={() => setSelectedCategory('')} className="whitespace-nowrap px-4 py-2 rounded-full border bg-white text-gray-700 border-gray-200 shadow-sm">Clear</button>
+            <button
+              onClick={() => setSelectedCategory("")}
+              className="whitespace-nowrap px-4 py-2 rounded-full border bg-white text-gray-700 border-gray-200 shadow-sm"
+            >
+              Clear
+            </button>
           )}
         </div>
       </section>
@@ -108,15 +124,20 @@ const Home = () => {
       <section id="products" className="mt-8">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-800">Featured products</h2>
-          <div className="text-sm text-gray-500">{loading ? 'Loading...' : `${products.length} results`}</div>
+          <div className="text-sm text-gray-500">
+            {loading ? "Loading..." : `${products.length} results`}
+          </div>
         </div>
 
         {error && <div className="mt-4 text-sm text-red-600">{error}</div>}
 
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="w-full h-64 bg-gray-100 animate-pulse rounded-md" />
+                <div
+                  key={i}
+                  className="w-full h-64 bg-gray-100 animate-pulse rounded-md"
+                />
               ))
             : products.map((product) => (
                 <ProductCard key={product.id} product={product} id={product.id} />
@@ -128,3 +149,11 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+

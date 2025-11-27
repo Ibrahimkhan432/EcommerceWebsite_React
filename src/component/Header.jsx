@@ -1,17 +1,28 @@
+
+
+
+
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import Logoutbtn from "./Logoutbtn";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="w-full fixed top-0 left-0 z-50">
       <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all">
-        <div className="flex flex-wrap items-center">
-        <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcSet="" />
-        <Link to="/" className="text-2xl font-bold text-indigo-600">
-          Ecommerce
-        </Link>
+        {/* Logo */}
+        <div className="flex items-center gap-4">
+          <img
+            className="w-20"
+            src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg"
+            alt="Logo"
+          />
+          <Link to="/" className="text-2xl font-bold text-indigo-600">
+            Ecommerce
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -71,29 +82,18 @@ const Header = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Link to="/signup" className="cursor-pointer px-4 py-2 border border-indigo-500 text-indigo-600 rounded-full hover:bg-indigo-50 transition text-sm">
-              Signup
-            </Link>
 
- <Link to="/login" className="cursor-pointer px-6 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full">
-              Login
-            </Link>
+            
+            <Logoutbtn/>
 
-
-
-
-
-           
-          </div>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
-          onClick={() => (open ? setOpen(false) : setOpen(true))}
+          onClick={() => setOpen(!open)}
           aria-label="Menu"
           className="sm:hidden"
         >
-          {/* Menu Icon SVG */}
           <svg
             width="21"
             height="15"
@@ -103,14 +103,7 @@ const Header = () => {
           >
             <rect width="21" height="1.5" rx=".75" fill="#426287" />
             <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#426287" />
-            <rect
-              x="6"
-              y="13"
-              width="15"
-              height="1.5"
-              rx=".75"
-              fill="#426287"
-            />
+            <rect x="6" y="13" width="15" height="1.5" rx=".75" fill="#426287" />
           </svg>
         </button>
 
@@ -118,20 +111,30 @@ const Header = () => {
         <div
           className={`${
             open ? "flex" : "hidden"
-          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col flex-start gap-2 px-5 text-sm overflow-hidden`}
+          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col gap-2 px-5 text-sm`}
         >
-          <a href="#" className="block text-center">
+          <Link to="/" className="block text-center">
             Home
-          </a>
-          <a href="#" className="block text-center">
+          </Link>
+          <Link to="/about" className="block text-center">
             About
-          </a>
-          <a href="#" className="block text-center">
+          </Link>
+          <Link to="/contact" className="block text-center">
             Contact
-          </a>
-          <div className="flex flex-col w-full gap-2">
-            <Link to="/signup" className="block text-center px-6 py-2 border border-indigo-500 text-indigo-600 rounded-full text-sm hover:bg-indigo-50">Signup</Link>
-            <button className="cursor-pointer px-6 py-2 mt-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm">Login</button>
+          </Link>
+          <div className="flex flex-col w-full gap-2 mt-2">
+            <Link
+              to="/signup"
+              className="block text-center px-6 py-2 border border-indigo-500 text-indigo-600 rounded-full text-sm hover:bg-indigo-50"
+            >
+              Signup
+            </Link>
+            <Link
+              to="/login"
+              className="block text-center px-6 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm"
+            >
+              Login
+            </Link>
           </div>
         </div>
       </nav>
@@ -140,3 +143,11 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
+
+
+
+

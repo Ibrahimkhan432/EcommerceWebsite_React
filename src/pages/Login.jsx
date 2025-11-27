@@ -1,27 +1,81 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+ import {auth} from "../config/firebase"
+import { signInWithEmailAndPassword ,onAuthStateChanged ,signInWithPopup, GoogleAuthProvider  } from "firebase/auth";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const navigate=useNavigate()
+const provider = new GoogleAuthProvider();
 
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+
+    const uid = user.uid;
+    console.log(uid);
+    
+    // ...
+  } else {
+    navigate("/login")
+    // User is signed out
+    // ...
+  }
+});
+
+
+function google_login() {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      navigate("/"); 
+    })
+    .catch((error) => {
+      console.log(error.code, error.message);
+    });
+}
+const [lemail, setEmail] = useState("");
+const [lpassword, setPassword] = useState("");
+const [error, setError] = useState("");
+
+function handle_login_email(e){
+setEmail(e.target.value)
+console.log("rewfvrwe");
+
+}
+function handle_login_password(e){
+  setPassword(e.target.value);
+}
   const handleLogin = (e) => {
+    signInWithEmailAndPassword(auth, lemail, lpassword)
+.then(() => {
+  // Signed in 
+  navigate("/")
+  setEmail('')
+  setPassword('')
+  // ...
+})
+.catch((error) => {
+  console.log(error);
+  
+});
     e.preventDefault();
+    setEmail(e.target.value)
+    setPassword(e.target.value)
 
     // Email regex for basic validation
     const emailPattern = /\S+@\S+\.\S+/;
 
-    return email.trim() === ""
+    return lemail.trim() === ""
       ? setError("Please enter your email.")
-      : !emailPattern.test(email)
+      : !emailPattern.test(lemail)
       ? setError("Please enter a valid email address.")
-      : password.trim() === ""
+      : lpassword.trim() === ""
       ? setError("Password cannot be empty.")
-      : password.length < 6
+      : lpassword.length < 6
       ? setError("Password should be at least 6 characters.")
       : (setError(""), (window.location.href = "/"));
   };
+
+
 
   return (
     <>
@@ -38,7 +92,8 @@ const Login = () => {
 
             <button
               type="button"
-              className="w-full mt-8 bg-gray-500/10 flex items-center justify-center h-12 rounded-full border-2 border-black hover:translate-y-1 transition-all"
+              onClick={google_login}
+              className="w-full mt-8 bg-gray-500/10 cursor-pointer flex items-center justify-center h-12 rounded-full border-2 border-black hover:translate-y-1 transition-all"
             >
               <img
                 src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/googleLogo.svg"
@@ -59,8 +114,8 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Email id"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={lemail}
+                onChange={(e) => handle_login_email(e)}
                 className="bg-transparent text-gray-500/80 placeholder-gray-600/80 outline-none text-sm w-full h-full"
               />
             </div>
@@ -70,8 +125,8 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={lpassword}
+                onChange={(e) => handle_login_password(e)}
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
               />
             </div>
@@ -95,13 +150,13 @@ const Login = () => {
 
             <button
               type="submit"
-              className="mt-8 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
+              className="mt-8 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity cursor-pointer"
             >
               Login
             </button>
 
             <p className="text-gray-700/90 text-sm mt-4 cursor-pointer">
-              Don’t have an account?
+              Don't have an account?
               <Link to={"/signup"}> Signup</Link>
             </p>
           </form>
