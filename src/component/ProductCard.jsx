@@ -6,11 +6,11 @@ const ProductCard = ({ product, id }) => {
   const [products,setProducts] =useState([])
   useEffect(() => {
     axios.get(`https://dummyjson.com/products/${id}`).then((res) => {
-      console.log("res in detail",res)
+      // console.log("res in detail",res)
       setProducts(res.data);
     });
   }, [id]);
-  console.log("product", product);
+  // console.log("product", product);
   return (
    
     <Link to={`/product/${id}`}>

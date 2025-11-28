@@ -1,16 +1,27 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "./CartContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Badge } from "@mui/material";
 
 const Header = () => {
+  const { cartItems } = useContext(CartContext);
+  console.log("cart items in header", cartItems.length);
+
   const [open, setOpen] = useState(false);
   return (
     <div className="w-full fixed top-0 left-0 z-50">
       <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 border-b border-gray-300 bg-white relative transition-all">
         <div className="flex flex-wrap items-center">
-        <img className="w-20" src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg" alt="" srcSet="" />
-        <Link to="/" className="text-2xl font-bold text-indigo-600">
-          Ecommerce
-        </Link>
+          <img
+            className="w-20"
+            src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg"
+            alt=""
+            srcSet=""
+          />
+          <Link to="/" className="text-2xl font-bold text-indigo-600">
+            Ecommerce
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -51,39 +62,25 @@ const Header = () => {
           </div>
 
           <div className="relative cursor-pointer">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
-                stroke="#615fff"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">
-              3
-            </button>
+            <Badge badgeContent={cartItems.length} color="primary">
+              <ShoppingCartIcon color="action" />
+            </Badge>
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/signup" className="cursor-pointer px-4 py-2 border border-indigo-500 text-indigo-600 rounded-full hover:bg-indigo-50 transition text-sm">
+            <Link
+              to="/signup"
+              className="cursor-pointer px-4 py-2 border border-indigo-500 text-indigo-600 rounded-full hover:bg-indigo-50 transition text-sm"
+            >
               Signup
             </Link>
 
- <Link to="/login" className="cursor-pointer px-6 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full">
+            <Link
+              to="/login"
+              className="cursor-pointer px-6 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full"
+            >
               Login
             </Link>
-
-
-
-
-
-           
           </div>
         </div>
 
@@ -129,8 +126,15 @@ const Header = () => {
             Contact
           </a>
           <div className="flex flex-col w-full gap-2">
-            <Link to="/signup" className="block text-center px-6 py-2 border border-indigo-500 text-indigo-600 rounded-full text-sm hover:bg-indigo-50">Signup</Link>
-            <button className="cursor-pointer px-6 py-2 mt-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm">Login</button>
+            <Link
+              to="/signup"
+              className="block text-center px-6 py-2 border border-indigo-500 text-indigo-600 rounded-full text-sm hover:bg-indigo-50"
+            >
+              Signup
+            </Link>
+            <button className="cursor-pointer px-6 py-2 mt-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm">
+              Login
+            </button>
           </div>
         </div>
       </nav>
