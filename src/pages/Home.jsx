@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
+import Sidebar from "../component/Sidebar";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +17,7 @@ const Home = () => {
     const fetchCategories = axios.get(
       "https://dummyjson.com/products/categories"
     );
+
     const productsUrl = selectedCategory
       ? `https://dummyjson.com/products/category/${encodeURIComponent(
           selectedCategory
@@ -38,10 +40,17 @@ const Home = () => {
   }, [selectedCategory]);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 mt-20">
-      {/* Hero */}
+    
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Header */}
+      <div className="border-2 w-full flex justify-center items-center p-4 mb-4 text-3xl font-bold">
+        Home
+      </div>
+
+      {/* Hero Section */}
       <section className="mt-8 bg-gradient-to-r from-indigo-600 to-indigo-400 text-white rounded-lg overflow-hidden shadow-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center p-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-extrabold">
               Discover products you'll love
@@ -83,13 +92,8 @@ const Home = () => {
             <div className="text-sm text-gray-500">No categories found</div>
           )}
           {categories.map((cat) => {
-            const isObj = cat && typeof cat === "object";
-            const key = isObj
-              ? cat.slug ?? cat.name ?? JSON.stringify(cat)
-              : String(cat);
-            const label = isObj
-              ? cat.name ?? cat.slug ?? String(cat)
-              : String(cat);
+            const key = String(cat);
+            const label = String(cat);
             return (
               <button
                 key={key}
@@ -118,9 +122,7 @@ const Home = () => {
       {/* Products */}
       <section id="products" className="mt-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-800">
-            Featured products
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-800">Featured products</h2>
           <div className="text-sm text-gray-500">
             {loading ? "Loading..." : `${products.length} results`}
           </div>
@@ -150,3 +152,11 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+

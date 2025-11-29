@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, } from 'react-router-dom'
+
+import Logoutbtn from './Logoutbtn';
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -10,6 +12,9 @@ const navItems = [
 ]
 
 const Sidebar = () => {
+
+
+  
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -71,7 +76,8 @@ const Sidebar = () => {
                 <div className="text-xs text-gray-500">Admin</div>
               </div>
             )}
-            <button className={`ml-auto ${collapsed ? '' : ''} text-sm text-indigo-600`}>Logout</button>
+            <Logoutbtn collapsed={collapsed}/>
+            
           </div>
         </div>
       </div>

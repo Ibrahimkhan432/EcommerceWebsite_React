@@ -32,7 +32,7 @@ const Contact = () => {
       localStorage.setItem('contacts', JSON.stringify(contacts))
       setSuccess('Message sent — we will reply within 24 hours.')
       setForm({ name: '', email: '', subject: '', message: '' })
-    } catch (err) {
+    } catch (error) {
       setErrors({ submit: 'Unable to send message. Try again.' })
     }
   }

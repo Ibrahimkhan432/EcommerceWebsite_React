@@ -4,7 +4,7 @@ import Sidebar from "../component/Sidebar"
 const RootLayout = () => {
   return (
     <div className="flex ">
-        <Sidebar cl/>
+      <Sidebar />
         <Outlet/>
     </div>
   )
