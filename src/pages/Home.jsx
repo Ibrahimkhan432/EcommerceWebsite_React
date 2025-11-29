@@ -74,7 +74,6 @@ const Home = () => {
               </a>
             </div>
           </div>
-
           <div className="hidden md:block">
             <img
               src="https://simicart.com/wp-content/uploads/eCommerce-logo.jpg"
@@ -140,7 +139,11 @@ const Home = () => {
                 />
               ))
             : products.map((product) => (
-                <ProductCard key={product.id} product={product} id={product.id} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  id={product.id}
+                />
               ))}
         </div>
       </section>

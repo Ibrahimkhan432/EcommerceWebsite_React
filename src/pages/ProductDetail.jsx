@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import  {CartContext} from "../component/CartContext";
 const ProductDetail = () => {
+
+const {cartItems,addItemToCart} = useContext(CartContext)
+console.log("cart items",cartItems)
+// console.log("cart items",addItemToCart)
+
   const { id } = useParams();
   const [product, setProduct] = useState({});
 
@@ -70,6 +75,7 @@ const ProductDetail = () => {
             <span className="font-semibold">Availability Status:</span> {availabilityStatus}
           </p>
 
+
           <p className="text-sm text-gray-500 mb-4">
             <span className="font-semibold">Stock:</span> {stock}
           </p>
@@ -80,8 +86,11 @@ const ProductDetail = () => {
           </p>
 
           <div className="flex items-center gap-4 mt-3">
-            <button className="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-md hover:bg-yellow-500 transition">
-              Add to Cart
+            <button 
+            onClick={()=>addItemToCart(product)}
+            className="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-md hover:bg-yellow-500 transition">
+             {cartItems.findIndex((data)=>data.item == product.id) == -1 ? "Add to Cart" : `(${cartItems.find((data)=>data.item == product.id).quantity})  Add More`
+             }
             </button>
 
             <button className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition">

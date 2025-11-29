@@ -7,6 +7,7 @@ import ProductDetail from "../pages/ProductDetail";
 import Signup from "../pages/Signup";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
+import Footer from "../component/Footer";
 
 const RouterPaage = () => {
   return (
@@ -21,6 +22,7 @@ const RouterPaage = () => {
           <Route path="/login" element={<Login/>}/>
         </Route>
       </Routes>
+      <Footer/>
     </div>
   );
 };
